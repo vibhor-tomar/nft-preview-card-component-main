@@ -1,33 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | NFT preview card component</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Frontend Mentor | NFT preview card component</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      :root {
+        /* COLORS */
+        --color-soft-blue: hsl(215, 51%, 70%);
+        --color-cyan: hsl(178, 100%, 50%);
+        --color-main-bg: hsl(217, 54%, 11%);
+        --color-card-bg: hsl(216, 50%, 16%);
+        --color-line: hsl(215, 32%, 27%);
+        --color-white: hsl(0, 0%, 100%);
+      }
+    
+      /* Typography */
+      body {
+        background: var(--color-main-bg, darkblue);
+      }
 
-  Equilibrium #3429
+      p {
+        font-size: 18px;
+      }
 
-  Our Equilibrium collection promotes balance and calm.
+      .font-outfit-300 {
+        font-family: "Outfit", sans-serif;
+        font-weight: 300;
+      }
+      .font-outfit-400 {
+        font-family: "Outfit", sans-serif;
+        font-weight: 400;
+      }
+      .font-outfit-600 {
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
+      }
+      .font-white {
+        cursor: pointer;
+        color: var(--color-white, white);
+      }
+      
+      .font-soft-blue {
+        color: var(--color-soft-blue, lightblue);
+      }
+      .font-cyan {
+        color: var(--color-cyan, cyan);
+      }
+      .card-bg {
+        background-color: var(--color-card-bg, blue);
+      }
 
-  0.041 ETH
-  3 days left
-  
-  Creation of Jules Wyvern
+      /* LAYOUT */
+      .container {
+        height: 600px;
+        width: 350px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 15px;
+        margin: auto;
+      }
+      .card-header {
+        height: 300px;
+        width: 300px;
+        margin:10px 10px 0 10px;
+        padding: 15px 15px 0 15px;
+        cursor: pointer;
+      }
+      .card-image {
+        border-radius: 10px;
+      }
+      .card-body{
+        margin: 10px 10px 0 10px;
+        padding: 15px 15px 0 15px;
+      }
+      div h2 {
+        font-size: 20px;
+        margin: 5px 0 20px 0;
+      }
+      .card-body > p {
+        margin:20px 0 10px 0;
+      }
+      .card-content-values{
+        display:flex;
+        justify-content:space-between;
+      }
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+      .card-content-values span {
+        display:flex;
+      }
+      .card-content-values span img {
+        height: 18px;
+        margin: 21px 0 25px 0;
+      }
+      .card-content-values span p {
+       margin-left: 8px;
+      }
+      .card-footer{
+        display:flex;
+        justify-content: left;
+        border-top: 1px solid var(--color-soft-blue) ;
+      }
+      .card-footer span {
+        display:flex;
+        margin: 8px 15px 8px 15px;
+      }
+      .card-footer span p {
+        font-size: 15px;
+        margin-left: 5px;
+      }
+      .card-footer img {
+        margin-top: 14px;
+      }
+
+      /* ACTIVE-STATES */
+      .font-white:hover{
+        color: var(--color-cyan);
+      }
+
+      .card-header::before{
+        position: absolute;
+        left: 0;
+        content: "";
+        background-color: var(--color-cyan);
+        height:300px;
+        width:300px;
+        margin-left:25px;
+        border-radius: 10px;
+        opacity: 0;
+      }
+      .card-header:hover::before{
+        opacity: 0.5;
+      }
+      .card-header::after {
+        position: absolute;
+        content: url("images/icon-view.svg");
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:300px;
+        width:300px;
+        top: 0;
+        opacity: 0;
+      }
+      .card-header:hover::after{
+        opacity: 1;
+      }
+
+
+      .attribution {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 15px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container card-bg">
+      <div class="card-header">
+        <img class="card-image" src="images/image-equilibrium.jpg" alt="equilibrium" height="300px" width="300px" />
+      </div>
+      <div class="card-body">
+        <h2 class="font-outfit-600 font-white">Equilibrium #3429</h2>
+        <p class="font-outfit-300 font-soft-blue">
+          Our Equilibrium collection promotes balance and calm.
+        </p>
+        <div class="card-content-values">
+          <span>
+            <img
+              class="font-cyan"
+              src="images/icon-ethereum.svg"
+              alt="ethereum"
+            />
+            <p class="font-outfit-400 font-cyan">0.041 ETH</p>
+          </span>
+          <span>
+            <img
+              class="font-soft-blue"
+              src="images/icon-clock.svg"
+              alt="clock"
+            />
+            <p class="font-outfit-300 font-soft-blue">3 days left</p>
+          </span>
+        </div>
+        <div class="card-footer">
+          <img src="images/image-avatar.png" alt="avatar" height="35px" width="35px"/>
+          <span>
+            <p class="font-outfit-300 font-soft-blue">Creation of</p>
+            <p class="font-outfit-300 font-white">Jules Wyvern</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution font-outfit-300 font-soft-blue">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Vibhor</a>.
+    </div>
+  </body>
 </html>
